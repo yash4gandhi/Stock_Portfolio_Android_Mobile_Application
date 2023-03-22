@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="menu_search" />
+    <string name="scroll" />
+    <string name="tab" />
+    <string name="hello_blank_fragment" />
+    <string name="Stocks">Stocks</string>
+</resources>

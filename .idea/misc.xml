@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/SEM2/Webtech/AA9/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1905" />
+        <entry key="..\:/SEM2/Webtech/AA9/app/src/main/res/drawable/chevron_right.xml" value="0.1905" />
+        <entry key="..\:/SEM2/Webtech/AA9/app/src/main/res/drawable/dialogcurve.xml" value="0.1525" />
+        <entry key="..\:/SEM2/Webtech/AA9/app/src/main/res/drawable/given_logo_background.xml" value="0.118" />
+        <entry key="..\:/SEM2/Webtech/AA9/app/src/main/res/drawable/ic_baseline_star_outline_24.xml" value="0.1905" />
+        <entry key="..\:/SEM2/Webtech/AA9/app/src/main/res/drawable/ic_baseline_trending_down_24.xml" value="0.132" />
+        <entry key="..\:/SEM2/Webtech/AA9/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1905" />
+        <entry key="..\:/SEM2/Webtech/AA9/app/src/main/res/drawable/search_icon.xml" value="0.1905" />
+        <entry key="..\:/SEM2/Webtech/AA9/app/src/main/res/drawable/splashscreen.xml" value="0.118" />
+        <entry key="..\:/SEM2/Webtech/AA9/app/src/main/res/drawable/trending_up.xml" value="0.2425" />
+        <entry key="..\:/SEM2/Webtech/AA9/app/src/main/res/layout/activity_2.xml" value="0.264" />
+        <entry key="..\:/SEM2/Webtech/AA9/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/SEM2/Webtech/AA9/app/src/main/res/layout/congrats_layout.xml" value="0.4" />
+        <entry key="..\:/SEM2/Webtech/AA9/app/src/main/res/layout/dialog_lay.xml" value="0.25416666666666665" />
+        <entry key="..\:/SEM2/Webtech/AA9/app/src/main/res/layout/fragment_tab1.xml" value="0.23854166666666668" />
+        <entry key="..\:/SEM2/Webtech/AA9/app/src/main/res/layout/fragment_tab2.xml" value="0.23854166666666668" />
+        <entry key="..\:/SEM2/Webtech/AA9/app/src/main/res/layout/news_dialog.xml" value="0.25416666666666665" />
+        <entry key="..\:/SEM2/Webtech/AA9/app/src/main/res/layout/news_layout.xml" value="0.23854166666666668" />
+        <entry key="..\:/SEM2/Webtech/AA9/app/src/main/res/layout/rowitem.xml" value="0.264" />
+        <entry key="..\:/SEM2/Webtech/AA9/app/src/main/res/layout/rowitem2.xml" value="1.0" />
+        <entry key="..\:/SEM2/Webtech/AA9/app/src/main/res/menu/favorite.xml" value="0.25416666666666665" />
+        <entry key="..\:/SEM2/Webtech/AA9/app/src/main/res/menu/menu.xml" value="0.23854166666666668" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

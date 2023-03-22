@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table</title>
+</head>
+<body>
+    <div id="container" >
+        <table class="table" style="width: 100%;  text-align: left; font-family: Roboto, Helvetica Neue, sans-serif;">
+            
+            <thead>
+              <tr style="background-color: rgb(170, 170, 170); color: rgb(72, 72, 72); ">
+                <th id = 'ticker'></th>
+                <th >Reddit</th>
+                <th >Twitter</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th style="background-color: rgb(170, 170, 170); color: rgb(72, 72, 72);" >Total Mentions</th>
+                <td id ='rtotal' style="background-color: rgb(210, 210, 210); color: rgb(104, 104, 104);"></td>
+                <td id ='ttotal'style="background-color: rgb(210, 210, 210); color: rgb(104, 104, 104);"></td>
+              </tr>
+              <tr>
+                <th style="background-color: rgb(170, 170, 170); color: rgb(72, 72, 72);" >Positive Mentions</th>
+                <td id ='rpos'style="background-color: rgb(210, 210, 210); color: rgb(104, 104, 104);"></td>
+                <td id ='tpos'style="background-color: rgb(210, 210, 210); color: rgb(104, 104, 104);"></td>
+              </tr>
+              <tr >
+                <th style="background-color: rgb(169, 169, 169); color: rgb(72, 72, 72);" >Negative Mentions</th>
+                <td id ='rneg' style="background-color: rgb(210, 210, 210); color: rgb(104, 104, 104);"></td>
+                <td id ='tneg' style="background-color: rgb(210, 210, 210); color: rgb(104, 104, 104);"></td>
+              </tr>
+              </tbody>
+        </table>
+    </div>
+</body>
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/drag-panes.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/indicators/indicators.js"></script>
+    <script src="https://code.highcharts.com/stock/indicators/volume-by-price.js"></script>
+<script>
+
+
+  var rpos = 0;
+  var rneg = 0;
+  var rtotal = 0;
+
+  var tpos = 0;
+  var tneg = 0;
+  var ttotal = 0;
+
+async function serverReq(ticker){
+    var url = "https://loyal-bounty-346223.wl.r.appspot.com/sentiment/"+ticker;
+    let response = await fetch(url);
+    let data = await response.text();
+return data;
+}
+
+
+
+ async function setTicker(symbol){
+
+    let temp = JSON.parse( await serverReq(symbol));
+    console.log(temp);
+
+
+      for(let i = 0; i < temp['reddit'].length;i++){
+        rpos += temp['reddit'][i].positiveMention;
+        rneg += temp['reddit'][i].negativeMention;
+        rtotal += temp['reddit'][i].mention;
+    }
+
+    for(let i = 0; i < temp['twitter'].length;i++){
+        tpos += temp['twitter'][i].positiveMention;
+        tneg += temp['twitter'][i].negativeMention;
+        ttotal += temp['twitter'][i].mention;
+    }
+      console.log(rtotal,ttotal);
+	
+    document.getElementById("ticker").innerHTML = symbol;
+    document.getElementById("rpos").innerHTML = rpos;
+    document.getElementById("rneg").innerHTML = rneg;
+    document.getElementById("rtotal").innerHTML = rtotal;
+    document.getElementById("tpos").innerHTML = tpos;
+    document.getElementById("tneg").innerHTML = tneg;
+    document.getElementById("ttotal").innerHTML = ttotal;
+
+
+}
+	
+
+</script>
+</html>
+

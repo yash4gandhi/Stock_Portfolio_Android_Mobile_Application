@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earnings</title>
+</head>
+<body>
+    <div id="container" style="height: 300px; min-width: 310px"></div>
+</body>
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/drag-panes.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/indicators/indicators.js"></script>
+    <script src="https://code.highcharts.com/stock/indicators/volume-by-price.js"></script>
+<script>
+
+
+console.log("hi")
+function setTicker(symbol){
+	var ticker=symbol;
+
+	url = 'https://loyal-bounty-346223.wl.r.appspot.com/earnings/'+symbol;
+	
+	Highcharts.getJSON(url, function (data) {
+
+let actual = [];
+let surprise = [];
+let estimate = [];
+let period = [];
+
+for(var i = 0; i < data.length; i++) {
+actual.push(data[i].actual)
+  period.push(data[i].period + "<br>Surprise: " + data[i].estimate)
+  estimate.push(data[i].estimate)
+  surprise.push(data[i].surprise)
+  
+}
+console.log(period)
+Highcharts.chart('container', {
+    rangeSelector: {
+      enabled: false,
+    },
+    navigator : {
+enabled : false
+
+},
+    chart: {
+        type: 'spline',
+        // marginRight:30,
+    },
+    
+    title: {
+        text: 'Historical EPS Surprises'
+    },
+
+    xAxis: {
+        categories: period,
+        labels: {
+  format: '<p>&nbsp&nbsp&nbsp{value}</p><br/>',
+  useHTML: true,
+},
+    },
+
+    
+		yAxis: {
+        title: {
+            text: 'Quarterly EPSs'
+        }
+    },
+    
+    legend: {
+        enabled:true
+    },
+    tooltip: {
+      shared:true
+    },
+
+
+    series: [
+      {
+        name: 'Actual',
+        data: actual,
+        type: 'spline',
+        color:"#7bb5ec",
+    },
+    {
+      name: 'Estimate',
+      data: estimate,
+      type: 'spline',
+      color: "#434343",
+    }
+  ],
+   
+}
+
+);
+});
+
+	
+}
+	
+// setTicker("TSLA");
+</script>
+</html>

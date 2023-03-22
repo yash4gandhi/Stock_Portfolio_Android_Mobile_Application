@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History</title>
+</head>
+<body>
+    <div id="container" style="height: 300px; min-width: 310px"></div>
+</body>
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/drag-panes.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/indicators/indicators.js"></script>
+    <script src="https://code.highcharts.com/stock/indicators/volume-by-price.js"></script>
+<script>
+
+
+console.log("hi")
+function setTicker(symbol){
+	var ticker=symbol;
+	url = 'https://loyal-bounty-346223.wl.r.appspot.com/historicaldata/'+symbol;
+	
+	Highcharts.getJSON(url, function (data) {
+
+console.log(Object.keys(data))
+
+
+var ohlc = [];
+var volume = [];
+var dataLength = data['o'].length;
+    
+
+
+for (let i=0; i < dataLength; i += 1) {
+      ohlc.push([
+        data['t'][i]*1000, 
+        data['o'][i], 
+        data['h'][i],
+        data['l'][i], 
+        data['c'][i], 
+      ]);
+
+      volume.push([
+      data['t'][i]*1000, 
+        data['v'][i], 
+      ]);
+}
+
+Highcharts.stockChart('container', {
+    series: [
+        {
+          type: 'candlestick',
+          name: ticker,
+          id: ticker,
+          zIndex: 2,
+          data: ohlc,
+        },
+        {
+          type: 'column',
+          name: 'Volume',
+          id: 'volume',
+          data: volume,
+          yAxis: 1,
+        },
+        {
+          type: 'vbp',
+          linkedTo: ticker,
+          params: {
+            volumeSeriesID: 'volume',
+          },
+          dataLabels: {
+            enabled: false,
+          },
+          zoneLines: {
+            enabled: false,
+          },
+        },
+        {
+          type: 'sma',
+          linkedTo: ticker,
+          zIndex: 1,
+          marker: {
+            enabled: false,
+          },
+        },
+      ],
+      title: { text: ticker + ' Historical' },
+      subtitle: {
+        text: 'With SMA and Volume by Price technical indicators',
+      },
+      yAxis: [
+        {
+          startOnTick: false,
+          endOnTick: false,
+          labels: {
+            align: 'right',
+            x: -3,
+          },
+          title: {
+            text: 'OHLC',
+          },
+          height: '60%',
+          lineWidth: 2,
+          resize: {
+            enabled: true,
+          },
+        },
+        {
+          labels: {
+            align: 'right',
+            x: -3,
+          },
+          title: {
+            text: 'Volume',
+          },
+          top: '65%',
+          height: '35%',
+          offset: 0,
+          lineWidth: 2,
+        },
+      ],
+      tooltip: {
+        split: true,
+      },
+      
+      rangeSelector: {
+        // buttons: [
+        //   {
+        //     type: 'month',
+        //     count: 1,
+        //     text: '1m',
+        //   },
+        //   {
+        //     type: 'month',
+        //     count: 3,
+        //     text: '3m',
+        //   },
+        //   {
+        //     type: 'month',
+        //     count: 6,
+        //     text: '6m',
+        //   },
+        //   {
+        //     type: 'ytd',
+        //     text: 'YTD',
+        //   },
+        //   {
+        //     type: 'year',
+        //     count: 1,
+        //     text: '1y',
+        //   },
+        //   {
+        //     type: 'all',
+        //     text: 'All',
+        //   },
+        // ],
+        selected: 2,
+      },
+
+      navigator: {
+        enabled: true
+    },
+   
+}
+
+);
+});
+
+	
+}
+	
+// setTicker("TSLA");
+
+
+</script>
+</html>
